@@ -1,0 +1,661 @@
+////////////////////
+// START DEFAULT OVERRIDES
+////////////////////
+html {
+  box-sizing: border-box;
+  font-size: calc(16px + 0.2 * ((100vw - 320px) / 680));
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+body {
+  transition: all 0.4s ease-in-out;
+}
+
+main {
+  max-width: 970px;
+  margin: 0 auto;
+  transition: all 0.4s ease-in-out;
+}
+
+footer {
+  margin: 0.5em 0 3em;
+  text-align: center;
+}
+
+h1 {
+  font-size: 1.25rem;
+  font-weight: 400;
+}
+
+h2 {
+  font-size: 1.2rem;
+  font-weight: 400;
+}
+
+h3 {
+  font-size: 1rem;
+  font-weight: 400;
+}
+
+h4,
+h5,
+h6 {
+  font-size: 1rem;
+  font-weight: 400;
+}
+
+p {
+  color: rgb(65, 65, 65);
+  line-height: 1.3em;
+}
+
+b {
+  // placeholder
+}
+
+em {
+  color: rgb(44, 44, 44);
+}
+
+a {
+  color: #5287e2;
+
+  &:hover {
+    color: #28cab5;
+  }
+
+  &:active {
+    color: #e25252;
+  }
+}
+////////////////////
+// END DEFAULT OVERRIDES
+////////////////////
+
+////////////////////
+// START DESKTOP/SIDE NAV
+////////////////////
+.side-nav {
+  position: fixed;
+  left: -5em;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  transition: all 0.2s ease-in-out;
+  opacity: 0;
+
+  &.active {
+    left: 2em;
+    opacity: 1;
+  }
+
+  li:first-child {
+    margin-bottom: 0.5em;
+  }
+}
+////////////////////
+// END DESKTOP/SIDE NAV
+////////////////////
+
+////////////////////
+// START MOBILE NAV
+////////////////////
+.mobile-nav {
+  position: fixed;
+  right: -10%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  width: 10%;
+  transition: all 0.4s ease-in-out;
+
+  ul {
+    list-style: none;
+    text-align: center;
+    font-size: 1.4rem;
+    margin-top: 1.5em;
+
+    li:first-child {
+      margin-bottom: 1.5em;
+    }
+
+    li:not(:first-child) {
+      margin-bottom: 0.4em;
+    }
+  }
+}
+////////////////////
+// END MOBILE NAV
+////////////////////
+
+////////////////////
+// START SECTIONS
+////////////////////
+.sections {
+  section {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    &:not(:last-child) {
+      margin-bottom: 3em;
+    }
+
+    > h2 {
+      margin: 2em 0;
+    }
+
+    .section-container {
+      width: 90%;
+      margin: 0 auto;
+    }
+  }
+}
+.inline-block {
+  display: inline-block;
+}
+
+.hidden {
+  display: none;
+}
+////////////////////
+// END SECTIONS
+////////////////////
+
+////////////////////
+// START SECTIONS INNER
+////////////////////
+header {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  transition: all 0.23s ease-in-out;
+
+  nav {
+    margin: 1em 0 0 1.5em;
+
+    ul > li:not(:last-child) {
+      margin-bottom: 0.2em;
+    }
+  }
+
+  &.active {
+    opacity: 100%;
+  }
+
+  .loader-wrapper {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: white;
+
+    .loader::after {
+      content: '\2026';
+      display: inline-block;
+      overflow: hidden;
+      vertical-align: bottom;
+      animation: dots steps(4, end) 2s infinite;
+      width: 0;
+    }
+
+    @keyframes dots {
+      to {
+        width: 1.5em;
+      }
+    }
+  }
+}
+////////////////////
+// END SECTIONS INNER
+////////////////////
+
+////////////////////
+// START PROJECTS
+////////////////////
+#projects {
+  .section-container > ul {
+    list-style: none;
+    margin-bottom: 3.5em;
+
+    > li:not(:last-child) {
+      margin-bottom: 2em;
+    }
+  }
+
+  .project {
+    h2 {
+      margin-bottom: 1em;
+    }
+
+    .project-description {
+      margin-left: 0.5em;
+    }
+  }
+}
+////////////////////
+// END PROJECTS
+////////////////////
+
+////////////////////
+// START EXPERIENCE
+////////////////////
+#experience {
+  .section-container > .work-containers {
+    list-style: none;
+
+    > li:not(:last-child) {
+      margin-bottom: 1.8em;
+    }
+
+    .work-role {
+      margin-bottom: 0.1em;
+    }
+
+    .work-role-details {
+      margin-bottom: 0.5em;
+    }
+
+    .work-container {
+      .work-summary {
+        margin-bottom: 0.5rem;
+      }
+
+      .dropdown-inner {
+        > h4 {
+          font-weight: 600;
+          margin-bottom: 0.4em;
+        }
+
+        > .work-details {
+          margin-left: 1.5em;
+          list-style: disc;
+
+          > .work-detail:not(:last-child) {
+            margin-bottom: 0.2em;
+          }
+        }
+      }
+    }
+  }
+}
+
+/* START DROPDOWN */
+/* Dropdown animation variables */
+$dropdown-easing: cubic-bezier(0, 1.12, 0.96, 0.99);
+$dropdown-duration: 0.75s;
+
+@keyframes dropdownFadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(0.8rem);
+    animation-timing-function: ease-in;
+  }
+
+  30% {
+    opacity: 0.3;
+    transform: translateY(0.3rem);
+    animation-timing-function: ease-out;
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes dropdownFadeOut {
+  0% {
+    opacity: 1;
+    transform: translateY(0);
+    animation-timing-function: linear;
+  }
+
+  50% {
+    opacity: 0.3;
+    transform: translateY(0.2rem);
+    animation-timing-function: ease-out;
+  }
+
+  100% {
+    opacity: 0;
+    transform: translateY(0.8rem);
+  }
+}
+
+.dropdown {
+  width: 100%;
+
+  &-trigger {
+    cursor: pointer;
+
+    .dropdown-status-text {
+      display: inline-grid;
+
+      span {
+        grid-area: 1 / 1;
+        // transition: opacity 0.65s cubic-bezier(0.84, 0.66, 0, 0.9);
+        transition: opacity 0.7s cubic-bezier(1, 0.09, 0.63, 0.74);
+      }
+
+      .text-closed {
+        opacity: 1;
+      }
+
+      .text-open {
+        opacity: 0;
+      }
+    }
+
+    &[aria-expanded='true'] {
+      .dropdown-status-text {
+        .text-closed {
+          opacity: 0;
+        }
+
+        .text-open {
+          opacity: 1;
+        }
+      }
+    }
+  }
+
+  &-wrapper {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows $dropdown-duration $dropdown-easing;
+
+    &.is-open {
+      grid-template-rows: 1fr;
+    }
+  }
+
+  &-inner {
+    overflow: hidden;
+    opacity: 0;
+    margin-top: 0.5rem;
+    transform: translateY(0.8rem);
+  }
+
+  &-wrapper.is-open &-inner {
+    animation: dropdownFadeIn $dropdown-duration forwards;
+  }
+
+  &-wrapper.is-closing &-inner {
+    animation: dropdownFadeOut $dropdown-duration forwards;
+  }
+}
+/* END DROPDOWN */
+////////////////////
+// END EXPERIENCE
+////////////////////
+
+////////////////////
+// START EDUCATION
+////////////////////
+#education {
+  .section-container > ul {
+    list-style: none;
+
+    > li:not(:last-child) {
+      margin-bottom: 1.8em;
+    }
+
+    h2 {
+      margin-bottom: 0.1em;
+    }
+
+    h3 {
+      margin-bottom: 0.5em;
+    }
+  }
+
+  .education-container {
+    p {
+      margin-left: 0.5em;
+    }
+    ul {
+      margin-left: 1.5em;
+      list-style: disc;
+    }
+  }
+}
+////////////////////
+// END EDUCATION
+////////////////////
+
+////////////////////
+// START LEARN MORE / INFO
+////////////////////
+#info {
+  .section-header {
+    margin-bottom: 1.5em;
+  }
+
+  .bio {
+    margin-bottom: 3em;
+
+    .details {
+      display: flex;
+      margin-bottom: 1.5em;
+      align-items: center;
+
+      .portrait {
+        width: 150px;
+        height: 150px;
+        object-fit: cover;
+        border-radius: 100%;
+        margin-right: 2em;
+      }
+
+      .summary {
+        text-indent: 2em;
+      }
+    }
+  }
+
+  .contact {
+    width: 50%;
+    margin: 0 auto;
+    text-align: center;
+    transition: all 0.3s ease-in-out;
+
+    h3 {
+      margin-bottom: 1em;
+      opacity: 1;
+      transition: all 0.2s ease;
+
+      &.submitted {
+        opacity: 0;
+        cursor: default;
+      }
+    }
+
+    input,
+    textarea {
+      padding: 0.5em;
+      font-size: 0.8rem;
+    }
+
+    .contact-container {
+      margin-bottom: 2em;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      .contact-form {
+        opacity: 1;
+        transition: all 0.2s ease;
+
+        input,
+        textarea {
+          font-family: Arial, Helvetica, sans-serif;
+        }
+
+        #name {
+          width: 100%;
+          margin-bottom: 0.5em;
+        }
+
+        #email {
+          width: 100%;
+          margin-bottom: 0.5em;
+        }
+
+        #message {
+          height: 6em;
+          width: 100%;
+          margin-bottom: 0.6em;
+        }
+
+        input[type='submit'] {
+          font-size: 1rem;
+        }
+
+        &.submitted {
+          opacity: 0;
+        }
+      }
+
+      .contact-confirmation {
+        position: absolute;
+        opacity: 0;
+        transition: all 0.5s ease;
+
+        &.active {
+          opacity: 1;
+        }
+      }
+    }
+  }
+
+  .social-links {
+    a {
+      font-size: 1.6rem;
+    }
+  }
+}
+////////////////////
+// END LEARN MORE / INFO
+////////////////////
+
+////////////////////
+// START DARK MODE
+////////////////////
+.mode-toggle {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.dark-mode {
+  background: rgb(35, 35, 35);
+  color: rgb(240, 240, 240);
+
+  p {
+    color: rgb(220, 220, 220);
+    line-height: 1.3em;
+  }
+
+  em {
+    color: rgb(183, 183, 183);
+  }
+
+  a {
+    color: rgb(145, 145, 255);
+
+    &:hover {
+      color: rgb(110, 232, 173);
+    }
+
+    &:active {
+      color: rgb(195, 110, 110);
+    }
+  }
+
+  .loader-wrapper {
+    background: rgb(25, 25, 25);
+  }
+
+  .contact-form {
+    input,
+    textarea {
+      background: rgb(50, 50, 50);
+      color: rgb(220, 220, 220);
+      border: 2px inset rgb(100, 100, 100);
+    }
+  }
+}
+////////////////////
+// END DARK MODE
+////////////////////
+
+////////////////////
+// START BREAKPOINTS
+////////////////////
+/* On screens that are 1667px or less */
+@media screen and (max-width: 1667px) {
+  main {
+    margin: 0 20%;
+  }
+}
+
+/* On screens that are 1309px or less */
+@media screen and (max-width: 1309px) {
+  #info .contact {
+    width: 70%;
+  }
+}
+
+/* On screens that are 900px or less */
+@media screen and (max-width: 900px) {
+  main {
+    margin: 0 10%;
+  }
+
+  .side-nav.active {
+    left: -5em;
+  }
+
+  .mobile-nav {
+    &.active {
+      right: 0;
+    }
+  }
+
+  #info {
+    .contact {
+      width: 90%;
+    }
+  }
+}
+
+/* On screens that are 740px or less */
+@media screen and (max-width: 740px) {
+  #info {
+    .section-header {
+      margin-bottom: 1.2em;
+    }
+    .bio .details {
+      flex-direction: column;
+      .portrait {
+        margin-right: 0;
+        margin-bottom: 2em;
+      }
+    }
+  }
+}
+////////////////////
+// END BREAKPOINTS
+////////////////////
